@@ -8,7 +8,6 @@
 
 user_age = int(input("Введіть ваш вік в роках: "))
 
-
 if user_age < 7:
     print("Де твої батьки?")
 elif user_age < 16:
