@@ -17,6 +17,19 @@
 використати сети!!!
 """
 
+# visited_places = set(input("Введіть через пробіл міста, в яких Ви були за минулі 10 років: ").split())
+# print(visited_places)
+# future_places = set(input("Введіть міста, куди Ви хочете поїхати в наступні 10 років: ").split())
+# print(future_places)
+#
+# dif = visited_places.difference(future_places)
+# print(dif)
+#
+# if dif != visited_places:
+#     print("1")
+# else:
+#     print(2)
+
 """
 Завдання 2
 макс 30 балів
@@ -36,6 +49,16 @@ MORSE_CODE_DICT = {
 
 string_to_decode1 = '..  .-.. .. -.- .  .--. -.-- - .... --- -.  ...-- .-.-.- .---- ----- '
 string_to_decode2 = '..  -.- -. --- .-- --..--  -.-- --- ..-  -.-. .- -.  -.. ---  .. - '
+
+DECODE_DICT = {v: k for k, v in MORSE_CODE_DICT.items()}
+print(DECODE_DICT)
+
+user_string = input("Введіть строку для декодування: ")
+decoded_string =
+
+
+
+
 
 """
 Завдання 3
