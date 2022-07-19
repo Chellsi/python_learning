@@ -51,13 +51,19 @@ string_to_decode1 = '..  .-.. .. -.- .  .--. -.-- - .... --- -.  ...-- .-.-.- .-
 string_to_decode2 = '..  -.- -. --- .-- --..--  -.-- --- ..-  -.-. .- -.  -.. ---  .. - '
 
 DECODE_DICT = {v: k for k, v in MORSE_CODE_DICT.items()}
-print(DECODE_DICT)
 
-user_string = input("Введіть строку для декодування: ")
-decoded_string =
-
-
-
+# user_set = input("Введіть строку для декодування: ").strip().split(" ")
+# print(user_set)
+# final_set = []
+#
+# for i in user_set:
+#     if i:
+#         final_set.append(DECODE_DICT.get(i))
+#     else:
+#         final_set.append(" ")
+#
+# res = "".join(str(x) for x in final_set)
+# print(str(res).casefold().capitalize())
 
 
 """
@@ -95,6 +101,20 @@ student = {
         'Вік': 18,
         'Номер телефону': '+380986671221',
         'Середній бал': 80
-    },
+    }
 }
-# ваш код нижче
+
+student.update({
+    'Леди Гага': {
+        'Пошта': 'baba@gmail.com',
+        'Вік': 39,
+        'Номер телефону': '+380984731221',
+        'Середній бал': 99
+    }
+})
+
+print('Список відмінників:')
+for mark in student:
+    if student.get(mark).get('Середній бал') > 90:
+        print(f'{str(mark)} має {str(student.get(mark).get("Середній бал"))} балів')
+
