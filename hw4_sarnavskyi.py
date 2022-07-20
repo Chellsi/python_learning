@@ -118,3 +118,21 @@ for mark in student:
     if student.get(mark).get('Середній бал') > 90:
         print(f'{str(mark)} має {str(student.get(mark).get("Середній бал"))} балів')
 
+
+print('Середній бал по групі:')
+middle_mark = 0
+marks_counter = 0
+for mark in student:
+    middle_mark += student.get(mark).get('Середній бал')
+    marks_counter += 1
+
+middle_mark /= marks_counter
+print(middle_mark)
+
+print(student)
+
+for mark in student:
+    if not student.get(mark).get('Номер телефону'):
+        student[mark]['Номер телефону'] = '+380114448877'
+
+print(student)
