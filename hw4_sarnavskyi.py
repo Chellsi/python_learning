@@ -17,18 +17,14 @@
 використати сети!!!
 """
 
-# visited_places = set(input("Введіть через пробіл міста, в яких Ви були за минулі 10 років: ").split())
-# print(visited_places)
-# future_places = set(input("Введіть міста, куди Ви хочете поїхати в наступні 10 років: ").split())
-# print(future_places)
-#
-# dif = visited_places.difference(future_places)
-# print(dif)
-#
-# if dif != visited_places:
-#     print("1")
-# else:
-#     print(2)
+visited_places = set(input("Введіть через пробіл міста, в яких Ви були за минулі 10 років: ").casefold().split())
+future_places = set(input("Введіть міста, куди Ви хочете поїхати в наступні 10 років: ").casefold().split())
+
+if visited_places.difference(future_places) != visited_places:
+    places_string = ', '.join(visited_places.intersection(future_places)).title()
+    print(f'Вам напевно дуже сподобалось в наступних містах: {places_string}')
+else:
+    print("Схоже, Ви відкриті до чогось нового!")
 
 """
 Завдання 2
@@ -52,18 +48,22 @@ string_to_decode2 = '..  -.- -. --- .-- --..--  -.-- --- ..-  -.-. .- -.  -.. --
 
 DECODE_DICT = {v: k for k, v in MORSE_CODE_DICT.items()}
 
-# user_set = input("Введіть строку для декодування: ").strip().split(" ")
-# print(user_set)
-# final_set = []
-#
-# for i in user_set:
-#     if i:
-#         final_set.append(DECODE_DICT.get(i))
-#     else:
-#         final_set.append(" ")
-#
-# res = "".join(str(x) for x in final_set)
-# print(str(res).casefold().capitalize())
+# Зробив декодування через інпут, а не константою.
+# string_to_decode1 = I like python 3.10
+# string_to_decode2 = I know, you can do it
+
+user_set = input("Введіть строку для декодування: ").strip().split(" ")
+print(user_set)
+decoded_symbols_list = []
+
+for i in user_set:
+    if i:
+        decoded_symbols_list.append(DECODE_DICT.get(i))
+    else:
+        decoded_symbols_list.append(" ")
+
+decoded_sympols_string = str("".join(str(x) for x in decoded_symbols_list)).casefold().capitalize().replace('  ', ' ')
+print(f'Ваша декодована строка: {decoded_sympols_string}')
 
 
 """
@@ -120,16 +120,15 @@ for mark in student:
 
 
 print('Середній бал по групі:')
-middle_mark = 0
+total_mark = 0
 marks_counter = 0
 for mark in student:
-    middle_mark += student.get(mark).get('Середній бал')
+    total_mark += student.get(mark).get('Середній бал')
     marks_counter += 1
 
-middle_mark /= marks_counter
-print(middle_mark)
+total_mark /= marks_counter
+print(total_mark)
 
-print(student)
 
 for mark in student:
     if not student.get(mark).get('Номер телефону'):
