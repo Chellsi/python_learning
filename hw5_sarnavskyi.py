@@ -4,7 +4,6 @@
 # та вивести на екран не виконані значення todo з тих даних, які до вас прийшли
 
 import requests
-from pprint import pprint
 url = 'https://dummyjson.com/todos'
 todo_request = requests.get(url)
 todos = todo_request.json()
