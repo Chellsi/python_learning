@@ -17,7 +17,7 @@
 # Не забувайте що кожна функція має виконувати тільки одне завдання і про правила написання коду.
 
 
-def cinema_cashier(checked_age, formatted_age_string):
+def calc_user_response(checked_age, formatted_age_string):
     """
     Function which takes user`s age and prints text message to user depends on his age
     Args:
@@ -40,7 +40,7 @@ def cinema_cashier(checked_age, formatted_age_string):
         print(f'Незважаючи на те, що вам {formatted_age_string}, білетів всеодно нема!')
 
 
-def age_string_create(age_tostring):
+def create_age_string(age_tostring):
     """
     Function to create text string which shows user`s age in ukrainian grammar
     Args:
@@ -60,7 +60,7 @@ def age_string_create(age_tostring):
         return f'{age_tostring} років'
 
 
-def input_checker():
+def validate_input():
     """
     Function which checks inserted user age so it is digit and more than 0. Top age limit is not restricted.
     No long-livers hating :)
@@ -76,6 +76,6 @@ def input_checker():
             print("Age should be a number bigger than zero!")
 
 
-user_age = int(input_checker())
-age_string = age_string_create(user_age)
-cinema_cashier(user_age, age_string)
+user_age = int(validate_input())
+age_string = create_age_string(user_age)
+calc_user_response(user_age, age_string)
