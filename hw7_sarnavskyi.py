@@ -18,6 +18,16 @@
 
 
 def cinema_cashier(checked_age, formatted_age_string):
+    """
+    Function which takes user`s age and prints text message to user depends on his age
+    Args:
+        checked_age(int): verified user`s age, corresponding to requirements converted into integer
+        formatted_age_string(str): string shows user`s age in ukrainian grammar depends on how many years it contains
+
+    Returns:
+        (str): text message to user depends on his age
+
+    """
     if checked_age < 7:
         print(f"Тобі ж {formatted_age_string}! Де твої батьки?")
     elif checked_age < 16:
@@ -31,18 +41,33 @@ def cinema_cashier(checked_age, formatted_age_string):
 
 
 def age_string_create(age_tostring):
+    """
+    Function to create text string which shows user`s age in ukrainian grammar
+    Args:
+        age_tostring(int): verified user`s age, corresponding to requirements converted into integer
+
+    Returns:
+        (str): string shows user`s age in ukrainian grammar depends on how many years it contains (f.ex. "20 years")
+
+    """
     if 20 > int(str(age_tostring)[-2:]) > 10:
         return f'{age_tostring} років'
     elif str(age_tostring).endswith('1'):
         return f'{age_tostring} рік'
     elif 4 >= int(str(age_tostring)[-1:]) >= 2:
-        print(str(age_tostring)[-1:])
         return f'{age_tostring} роки'
     else:
         return f'{age_tostring} років'
 
 
 def input_checker():
+    """
+    Function which checks inserted user age so it is digit and more than 0. Top age limit is not restricted.
+    No long-livers hating :)
+    Returns:
+        age_check(str): verified age, corresponding to requirements
+
+    """
     while True:
         age_check = input("Please, insert your age: ")
         if age_check.isdigit() and int(age_check) > 0:
