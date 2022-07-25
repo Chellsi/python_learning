@@ -20,59 +20,58 @@
 def calc_user_response():
     """
     Function which takes user`s age and prints text message to user depends on his age
-    Args:
 
     Returns:
         (str): text message to user depends on his age
-
     """
-    checked_age = int(validate_input())
-    formatted_age_string = create_age_string(checked_age)
+    checked_age = validate_input()
+    ages_string = create_ages_string(checked_age)
     if checked_age < 7:
-        print(f"Тобі ж {formatted_age_string}! Де твої батьки?")
+        print(f"Тобі ж {checked_age} {ages_string}! Де твої батьки?")
     elif checked_age < 16:
-        print(f'Тобі лише {formatted_age_string}, а це фільм для дорослих!')
+        print(f'Тобі лише {checked_age} {ages_string}, а це фільм для дорослих!')
     elif checked_age > 65:
-        print(f'Вам {formatted_age_string}? Покажіть пенсійне посвідчення!')
+        print(f'Вам {checked_age} {ages_string}? Покажіть пенсійне посвідчення!')
     elif str(checked_age)[0] == str(checked_age)[1]:
-        print(f'О, вам {formatted_age_string}! Який цікавий вік!')
+        print(f'О, вам {checked_age} {ages_string}! Який цікавий вік!')
     else:
-        print(f'Незважаючи на те, що вам {formatted_age_string}, білетів всеодно нема!')
+        print(f'Незважаючи на те, що вам {checked_age} {ages_string}, білетів всеодно нема!')
 
 
-def create_age_string(age_tostring):
+def create_ages_string(age_tostring):
     """
-    Function to create text string which shows user`s age in ukrainian grammar
+    Function to create string containing correct form of word "year/s" in ukrainian
+
     Args:
-        age_tostring(int): verified user`s age, corresponding to requirements converted into integer
+        age_tostring(int): verified age number inserted by user
 
     Returns:
-        (str): string shows user`s age in ukrainian grammar depends on how many years it contains.
-        f.ex "1 рік" but "2 роки"
+        (str): string containing correct form of word "year/s" in ukrainian
 
     """
     if 20 > int(str(age_tostring)[-2:]) > 10:
-        return f'{age_tostring} років'
+        return f'років'
     elif str(age_tostring).endswith('1'):
-        return f'{age_tostring} рік'
+        return f'рік'
     elif 4 >= int(str(age_tostring)[-1:]) >= 2:
-        return f'{age_tostring} роки'
+        return f'роки'
     else:
-        return f'{age_tostring} років'
+        return f'років'
 
 
 def validate_input():
     """
-    Function which checks inserted user age, so it is digit and more than 0. Top age limit is not restricted.
+    Function which checks inserted age number by user, so it is digit and more than 0. Top age limit is not restricted.
     No long-livers hating :)
+
     Returns:
-        age_check(str): verified age, corresponding to requirements
+        age_check(int): verified age, corresponding to requirements
 
     """
     while True:
         age_check = input("Please, insert your age: ")
         if age_check.isdigit() and int(age_check) > 0:
-            return age_check
+            return int(age_check)
         else:
             print("Age should be a number bigger than zero!")
 
