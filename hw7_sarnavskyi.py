@@ -47,7 +47,8 @@ def create_age_string(age_tostring):
         age_tostring(int): verified user`s age, corresponding to requirements converted into integer
 
     Returns:
-        (str): string shows user`s age in ukrainian grammar depends on how many years it contains (f.ex. "20 years")
+        (str): string shows user`s age in ukrainian grammar depends on how many years it contains.
+        f.ex "1 рік" but "2 роки"
 
     """
     if 20 > int(str(age_tostring)[-2:]) > 10:
