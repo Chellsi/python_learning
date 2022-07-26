@@ -21,8 +21,6 @@ def calc_user_response():
     """
     Function which takes user`s age and prints text message to user depends on his age
 
-    Returns:
-        (str): text message to user depends on his age
     """
     checked_age = validate_input()
     ages_string = create_ages_string(checked_age)
