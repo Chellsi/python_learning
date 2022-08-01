@@ -1,7 +1,7 @@
 import random
 
-MESSAGE_CHOOSE_FIGURE = "Please, choose your figure - insert '1' for Rock, '2' for Scissors, '3' for Paper.\n" \
-                        "Or insert '0' if you want your figure to be chosen randomly: "
+MESSAGE_CHOOSE_ITEM = "Please, choose your item - insert '1' for Rock, '2' for Scissors, '3' for Paper.\n" \
+                        "Or insert '0' if you want your item to be chosen randomly: "
 MESSAGE_CHOOSING_ERROR = "You have inserted wrong value!"
 MESSAGE_CONTINUE_GAME = "Want to continue game? Type 'Y' to continue or 'N' to finish and view score: "
 MESSAGE_CONTINUE_ERROR = "Please, type 'Y' or 'N'!"
@@ -24,63 +24,63 @@ def choose_random():
     return random.randrange(1, 4, 1)
 
 
-def convert_figure(figure):
+def convert_item(item):
     """
-    Function which converts number from 1 to 3 to corresponding figure
+    Function which converts number from 1 to 3 to corresponding item
     Args:
-        figure (int): number in range 1-3
+        item (int): number in range 1-3
 
     Returns:
-        (str): text containing figure of game
+        (str): text containing item of game
 
     """
-    if figure == 1:
+    if item == 1:
         return 'Rock'
-    elif figure == 2:
+    elif item == 2:
         return 'Scissors'
-    elif figure == 3:
+    elif item == 3:
         return 'Paper'
 
 
-def calc_result(player_figure, bot_figure):
+def calc_result(player_item, bot_item):
     """
-    Function which calculates winner of exact party depending on user`s and bot`s game figures
+    Function which calculates winner of exact party depending on user`s and bot`s game items
     Args:
-        player_figure (int): pseudo-randomly chosen or inserted by user integer from range 1-3
-        bot_figure (int): pseudo-randomly chosen integer from range 1-3
+        player_item (int): pseudo-randomly chosen or inserted by user integer from range 1-3
+        bot_item (int): pseudo-randomly chosen integer from range 1-3
 
     Returns:
         (str): party tesult - user victory, bot victory or draw
 
     """
-    if player_figure == bot_figure:
+    if player_item == bot_item:
         return 'draw'
-    elif player_figure == 1 and bot_figure == 2:
+    elif player_item == 1 and bot_item == 2:
         return 'player_victory'
-    elif player_figure == 2 and bot_figure == 1:
+    elif player_item == 2 and bot_item == 1:
         return 'bot_victory'
-    elif player_figure == 2 and bot_figure == 3:
+    elif player_item == 2 and bot_item == 3:
         return 'player_victory'
-    elif player_figure == 3 and bot_figure == 2:
+    elif player_item == 3 and bot_item == 2:
         return 'bot_victory'
-    elif player_figure == 3 and bot_figure == 1:
+    elif player_item == 3 and bot_item == 1:
         return 'player_victory'
-    elif player_figure == 1 and bot_figure == 3:
+    elif player_item == 1 and bot_item == 3:
         return 'bot_victory'
 
 
-def receive_user_figure():
+def receive_user_item():
     """
-    Function which checks user input when he is choosing game figure
+    Function which checks user input when he is choosing game item
     Returns:
         (int): pseudo-randomly chosen or inserted by user integer from range 1-3
 
     """
     while True:
-        inserted_figure = input(MESSAGE_CHOOSE_FIGURE)
-        if inserted_figure.isdigit() and 0 < int(inserted_figure) <= 3:
-            return int(inserted_figure)
-        elif inserted_figure == '0':
+        inserted_item = input(MESSAGE_CHOOSE_ITEM)
+        if inserted_item.isdigit() and 0 < int(inserted_item) <= 3:
+            return int(inserted_item)
+        elif inserted_item == '0':
             return choose_random()
         else:
             print(MESSAGE_CHOOSING_ERROR)
@@ -107,11 +107,11 @@ def detect_party_winner():
     Prints result to user and updates score{} to track highscores.
 
     """
-    user = receive_user_figure()
+    user = receive_user_item()
     bot = choose_random()
     result = calc_result(user, bot)
-    user_string = convert_figure(user)
-    bot_string = convert_figure(bot)
+    user_string = convert_item(user)
+    bot_string = convert_item(bot)
     if result == 'player_victory':
         print(f"{user_string} beats {bot_string}. You won!")
         score["player"] += 1
