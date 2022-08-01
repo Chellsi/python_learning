@@ -2,9 +2,9 @@ import random
 
 MESSAGE_CHOOSE_ITEM = "Please, choose your item - insert '1' for Rock, '2' for Scissors, '3' for Paper.\n" \
                         "Or insert '0' if you want your item to be chosen randomly: "
-MESSAGE_CHOOSING_ERROR = "You have inserted wrong value!"
+MESSAGE_CHOOSING_ERROR = "\033[1;31;31mYou have inserted wrong value!\033[0m"
 MESSAGE_CONTINUE_GAME = "Want to continue game? Type 'Y' to continue or 'N' to finish and view score: "
-MESSAGE_CONTINUE_ERROR = "Please, type 'Y' or 'N'!"
+MESSAGE_CONTINUE_ERROR = "\033[1;31;31mPlease, type 'Y' or 'N'!\033[0m"
 
 
 score = {
