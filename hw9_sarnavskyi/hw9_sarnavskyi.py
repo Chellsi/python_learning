@@ -32,9 +32,17 @@ def check_numbers(to_guess, user_number):
     Returns:
         (bool):
     """
-    print(f'---> {to_guess}')
     if to_guess == user_number:
         return True
+    elif to_guess - user_number > 10 or user_number - to_guess > 10:
+        print('Cold')
+        return False
+    elif 10 >= to_guess - user_number >= 5 or 10 >= user_number - to_guess >= 5:
+        print('Warm')
+        return False
+    elif 4 >= to_guess - user_number >= 1 or 4 >= user_number - to_guess >= 1:
+        print('Hot')
+        return False
     else:
         return False
 
