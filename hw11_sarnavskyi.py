@@ -4,33 +4,35 @@
 # Наповніть класи атрибутами на свій розсуд. Створіть обʼєкти класів "Автомобіль", "Літак", "Корабель".
 
 class Transport:
-    made_of = None
-    type = None
-
-    def __init__(self, made_of, type):
-        self.made_of = made_of
-        self.type = type
+    def __init__(self, movement_type, purpose_type):
+        self.movement_type = movement_type
+        self.purpose_type = purpose_type
 
 
 class Car(Transport):
-    wheels_count = 4
-    max_speed = 200
-    doors_count = 4
+    def __init__(self, movement_type, purpose_type, manufacturer, model, year_of_issue):
+        super().__init__(movement_type, purpose_type)
+        self.manufacturer = manufacturer
+        self.model = model
+        self.year_of_issue = year_of_issue
 
 
 class Aircraft(Transport):
-    wheels_count = 2
-    max_speed = 900
-    doors_count = 2
+    def __init__(self, movement_type, purpose_type, model, seats_count):
+        super().__init__(movement_type, purpose_type)
+        self.model = model
+        self.seats_count = seats_count
 
 
-class Ship:
-    wheels_count = 0
-    max_speed = 60
-    doors_count = 2
+class Ship(Transport):
+    def __init__(self, movement_type, purpose_type, cargo_passanger_type, registration_name, registration_flag):
+        super().__init__(movement_type, purpose_type)
+        self.cargo_passanger_type = cargo_passanger_type
+        self.registration_name = registration_name
+        self.registration_flag = registration_flag
 
 
-titanic = Ship
-civic = Car
-boeing_737 = Aircraft
 
+fathers_car = Car('drive', 'civilian', 'Sitroen', 'Berlingo', 2008)
+flight_to_Vienna = Aircraft('flight', 'civilian', 'Embraer 195', 120)
+corn_cargo_wessel = Ship('sail', 'civilian', 'cargo', 'E-SHIP 1', 'Germany')
