@@ -25,13 +25,13 @@ class Aircraft(Transport):
 
 
 class Ship(Transport):
-    def __init__(self, movement_type, purpose_type, cargo_passanger_type, registration_name, registration_flag):
+    def __init__(self, movement_type, purpose_type, cargo_passenger_type, registration_name, registration_flag):
         super().__init__(movement_type, purpose_type)
-        self.cargo_passanger_type = cargo_passanger_type
+        self.cargo_passenger_type = cargo_passenger_type
         self.registration_name = registration_name
         self.registration_flag = registration_flag
 
 
-fathers_car = Car('drive', 'civilian', 'Sitroen', 'Berlingo', 2008)
+fathers_car = Car('drive', 'civilian', 'Citroen', 'Berlingo', 2008)
 flight_to_Vienna = Aircraft('flight', 'civilian', 'Embraer 195', 120)
 corn_cargo_wessel = Ship('sail', 'civilian', 'cargo', 'E-SHIP 1', 'Germany')
