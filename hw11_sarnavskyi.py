@@ -32,7 +32,6 @@ class Ship(Transport):
         self.registration_flag = registration_flag
 
 
-
 fathers_car = Car('drive', 'civilian', 'Sitroen', 'Berlingo', 2008)
 flight_to_Vienna = Aircraft('flight', 'civilian', 'Embraer 195', 120)
 corn_cargo_wessel = Ship('sail', 'civilian', 'cargo', 'E-SHIP 1', 'Germany')
