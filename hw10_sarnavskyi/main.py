@@ -41,37 +41,91 @@ raise AttributeError(f'no parameter "password" in arguments of function{func.__n
 
 
 def wrap_validate(func):
-    rules = {
-    }
+    keyword_args = {}
+    result = {}
 
-    def is_valid_length(*args, **kwargs):
-        if len(rules['password']) >= 10:
-            return func(*args, **kwargs)
+    def cut_result(*args, **kwargs):
+        func_res = str(func(*args, **kwargs))
+        print(func_res)
+        if len(func_res) > 100:
+            return func_res[slice(98)] + '...'
         else:
-            print('shit')
+            return func_res
 
-    def has_any_symbols(inputString):
-        return any(char.isdigit() for char in inputString)
+    def checker(*args, **kwargs):
+        if check_absence_password(*args, **kwargs):
+            pass
+        else:
+            raise AttributeError(f'no parameter "password" in arguments of function{func.__name__}')
+        if is_string():
+            pass
+        else:
+            result.update({'result': cut_result(*args, **kwargs), 'is_secure': False})
+            return result
+        if is_valid_length(10):
+            pass
+        else:
+            result.update({'result': cut_result(*args, **kwargs), 'is_secure': False})
+            return result
+        if has_any_symbols('letters_check'):
+            pass
+        else:
+            result.update({'result': cut_result(*args, **kwargs), 'is_secure': False})
+            return result
+        if has_any_symbols('contains_number'):
+            pass
+        else:
+            result.update({'result': cut_result(*args, **kwargs), 'is_secure': False})
+            return result
+        if has_any_symbols('contains_exclamation_mark'):
+            pass
+        else:
+            result.update({'result': cut_result(*args, **kwargs), 'is_secure': False})
+            return result
+        result.update({'result': cut_result(*args, **kwargs), 'is_secure': True})
+        print(result)
+        return result
 
-    def password_validate(*args, **kwargs):
-        rules.update(kwargs)
-        for key in rules.keys():
+    def check_absence_password(*args, **kwargs):
+        keyword_args.update(kwargs)
+        count = False
+        for key in keyword_args.keys():
             if key == 'password':
-                is_valid_length(*args, **kwargs)
-            else:
-                print('no arg')
+                count = True
+        return count
 
-    return password_validate
+    def is_valid_length(length=10):
+        count = False
+        if len(keyword_args['password']) >= length:
+            count = True
+        return count
 
+    def is_string():
+        count = False
+        if isinstance(keyword_args['password'], str):
+            count = True
+        return count
 
-@wrap_validate
-def print_shit(dummy, *, password=None):
-    print(dummy)
-    print(password)
+    def has_any_symbols(method):
+        count = False
+        if method == 'letters_check':
+            for char in keyword_args['password']:
+                if char.isalpha():
+                    count = True
+            return count
+        elif method == 'contains_number':
+            for char in keyword_args['password']:
+                if char.isdigit():
+                    count = True
+            return count
+        elif method == 'contains_exclamation_mark':
+            for char in keyword_args['password']:
+                if char == '!':
+                    count = True
+            return count
 
+    return checker
 
-text = 'workseeeee'
-print_shit(12, password=text)
 
 ##############################################################################
 ############                                                     #############
