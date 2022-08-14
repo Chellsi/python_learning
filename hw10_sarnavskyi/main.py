@@ -44,18 +44,22 @@ def wrap_validate(func):
     rules = {
     }
 
+    def is_valid_length(*args, **kwargs):
+        if len(rules['password']) >= 10:
+            return func(*args, **kwargs)
+        else:
+            print('shit')
+
+    def has_any_symbols(inputString):
+        return any(char.isdigit() for char in inputString)
+
     def password_validate(*args, **kwargs):
         rules.update(kwargs)
-        try:
-            for key in rules.keys():
-                if key == 'password':
-                    def is_valid_length(*args, **kwargs):
-                        if str(rules['password']).length == 10:
-                            pass
-                        else:
-                            print('shit')
-        except:
-            print('no arg')
+        for key in rules.keys():
+            if key == 'password':
+                is_valid_length(*args, **kwargs)
+            else:
+                print('no arg')
 
     return password_validate
 
@@ -66,7 +70,7 @@ def print_shit(dummy, *, password=None):
     print(password)
 
 
-text = 'works'
+text = 'workseeeee'
 print_shit(12, password=text)
 
 ##############################################################################
