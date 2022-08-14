@@ -83,7 +83,6 @@ def wrap_validate(func):
             result.update({'result': cut_result(*args, **kwargs), 'is_secure': False})
             return result
         result.update({'result': cut_result(*args, **kwargs), 'is_secure': True})
-        print(result)
         return result
 
     def check_absence_password(*args, **kwargs):
@@ -147,9 +146,17 @@ f'User {login} created account on {date} with password "{password}". Additional 
 
 задекоруйте написаним в завданні 1 декоратором
 """
+
 import datetime
 
-date = datetime.date.today()
+
+@wrap_validate
+def registration(id, /, login=None, notes=None, *, password=None):
+    date = datetime.date.today()
+    return str(f'User {login} created account on {date} with password "{password}". Additional information: {notes}')
+
+
+
 
 ##############################################################################
 ############                                                     #############
@@ -168,6 +175,11 @@ date = datetime.date.today()
 ВАЖЛИВО 
 функцію registration ассертимо ТІЛЬКИ при передачі їй валідних даних (поля паролю)
 """
+
+if __name__ == '__main__':
+    assert type(registration(3434, 'Comp', notes='notes', password='wasdwasd9!')) == dict, 'not a string'
+    assert type(registration(3434, 'Comp', notes='notes', password='wasdwasd9')) == dict, 'not a dict'
+
 
 ##############################################################################
 ############                                                     #############
