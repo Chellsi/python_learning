@@ -44,6 +44,16 @@ result = {}
 
 
 def check_absence_password(*args, **kwargs):
+    """
+    Function to check presence of argument named 'password" in function
+    Args:
+        *args: according to checked function
+        **kwargs: according to checked function
+
+    Returns:
+        (bool): True if argument named 'password" present, False if not
+
+    """
     keyword_args.update(kwargs)
     count = False
     for key in keyword_args.keys():
@@ -53,6 +63,16 @@ def check_absence_password(*args, **kwargs):
 
 
 def is_valid_length(string, length=10):
+    """
+    Function which checks whether are there not less than required number of characters in string
+    Args:
+        string(str): string to check
+        length(int): required number of characters in string
+
+    Returns:
+        (bool): True if there are required number of characters in string, False if not
+
+    """
     count = False
     if len(string) >= length:
         count = True
@@ -60,6 +80,15 @@ def is_valid_length(string, length=10):
 
 
 def is_string(string):
+    """
+    Function to check whether provided data is string
+    Args:
+        string: provided data to check
+
+    Returns:
+        (bool: True if provided data is string, False if not)
+
+    """
     count = False
     if isinstance(string, str):
         count = True
@@ -67,6 +96,18 @@ def is_string(string):
 
 
 def has_any_symbols(string, method):
+    """
+    Function which checks whether are there required characters in provided string
+    Args:
+        string(str): string to check
+        method(str): 'letters_check' to check if there are latin letters
+                    'contains_number' to check if there are numbers
+                    'contains_exclamation_mark' to check if there is exclamation mark
+
+    Returns:
+        (bool): True if string corresponds to chosen method to check, False if not
+
+    """
     count = False
     if method == 'letters_check':
         for char in string:
@@ -87,6 +128,17 @@ def has_any_symbols(string, method):
 
 
 def cut_result(to_check, *args, **kwargs):
+    """
+    Function which cuts string which is result of another function execution not more than 100 characters
+    Args:
+        to_check(function): function which will be executed and which result will be cut if it is longer than 100 chars
+        *args: according to function to_check
+        **kwargs: according to function to_check
+
+    Returns:
+        (string): function to_check execution result cut to 100 chars with 3 dots in the end if it is longer than 100
+
+    """
     func_res = str(to_check(*args, **kwargs))
     if len(func_res) > 100:
         return func_res[slice(97)] + '...'
@@ -95,6 +147,15 @@ def cut_result(to_check, *args, **kwargs):
 
 
 def wrap_validate(func):
+    """
+    Decorator to function which checks kwarg 'password' and returns dict with data depending on data in 'password'
+    Args:
+        func(function): function to decorate
+
+    Returns:
+        (dict): dictionary with data depending on data in 'password'
+
+    """
 
     def checker(*args, **kwargs):
         if check_absence_password(*args, **kwargs):
@@ -158,10 +219,21 @@ import datetime
 
 @wrap_validate
 def registration(id, /, login=None, notes=None, *, password=None):
+    """
+    Function which count registration result
+    Args:
+        id: any
+        login: any, default = None
+        notes: any, default = None
+        password: keyword, default = None
+
+    Returns:
+        (string): string containing registration result depending on function arguments
+
+    """
     date = datetime.date.today()
     return str(f'User {login} created account on {date} with password "{password}". Additional information: {notes}')
 
-print(registration(12, password=None))
 
 ##############################################################################
 ############                                                     #############
