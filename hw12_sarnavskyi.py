@@ -47,7 +47,7 @@ class Line:
     _begin = None
     _end = None
 
-    @property  # getter
+    @property
     def begin(self):
         return self._begin
 
@@ -57,7 +57,7 @@ class Line:
             raise TypeError
         self._begin = value
 
-    @property  # getter
+    @property
     def end(self):
         return self._end
 
@@ -82,7 +82,7 @@ class Triangle:
     _left_side = None
     _top_side = None
 
-    @property  # getter
+    @property
     def left_side(self):
         return self._left_side
 
@@ -92,7 +92,7 @@ class Triangle:
             raise TypeError
         self._left_side = value
 
-    @property  # getter
+    @property
     def top_side(self):
         return self._top_side
 
