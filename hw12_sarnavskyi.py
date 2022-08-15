@@ -112,7 +112,7 @@ class Triangle:
         a = ((self.left_side.x - self.top_side.x) ** 2 + (self.left_side.y - self.top_side.y) ** 2) ** 0.5
         b = ((self.top_side.x - self.right_side.x) ** 2 + (self.top_side.y - self.right_side.y) ** 2) ** 0.5
         c = ((self.right_side.x - self.left_side.x) ** 2 + (self.right_side.y - self.left_side.y) ** 2) ** 0.5
-        p = a + b + c
+        p = (a + b + c) / 2
         return (p*(p-a)*(p-b)*(p-c)) ** 0.5
 
 
