@@ -37,6 +37,7 @@ point1 = Point(0, 3)
 point1.x = 100
 point2 = Point(4, 0)
 point3 = Point(3, 5)
+point4 = Point(4, 6)
 
 
 class Line:
@@ -70,53 +71,87 @@ class Line:
 
     @property
     def length(self):
-        print('in length_getter')
         return ((self.begin.x - self.end.x) ** 2 + (self.begin.y - self.end.y) ** 2) ** 0.5
 
 
 class Triangle:
 
-    _left_side = None
-    _top_side = None
+    _left_point = None
+    _top_point = None
+    _right_top = None
 
     @property
-    def left_side(self):
-        return self._left_side
+    def left_point(self):
+        return self._left_point
 
-    @left_side.setter
-    def left_side(self, value):
+    @left_point.setter
+    def left_point(self, value):
         if not isinstance(value, Point):
             raise TypeError
-        self._left_side = value
+        self._left_point = value
 
     @property
-    def top_side(self):
-        return self._top_side
+    def top_point(self):
+        return self._top_point
 
-    @top_side.setter
-    def top_side(self, value):
+    @top_point.setter
+    def top_point(self, value):
         if not isinstance(value, Point):
             raise TypeError
-        self._top_side = value
+        self._top_point = value
+
+    @property
+    def right_point(self):
+        return self._right_point
+
+    @right_point.setter
+    def right_point(self, value):
+        if not isinstance(value, Point):
+            raise TypeError
+        self._right_point = value
 
     def __init__(self, first_point: Point, second_point: Point, third_point: Point):
-        self.left_side = first_point
-        self.top_side = second_point
-        self.right_side = third_point
+        self.left_point = first_point
+        self.top_point = second_point
+        self.right_point = third_point
 
     @property
     def area(self):
-        a = ((self.left_side.x - self.top_side.x) ** 2 + (self.left_side.y - self.top_side.y) ** 2) ** 0.5
-        b = ((self.top_side.x - self.right_side.x) ** 2 + (self.top_side.y - self.right_side.y) ** 2) ** 0.5
-        c = ((self.right_side.x - self.left_side.x) ** 2 + (self.right_side.y - self.left_side.y) ** 2) ** 0.5
+        a = ((self.left_point.x - self.top_point.x) ** 2 + (self.left_point.y - self.top_point.y) ** 2) ** 0.5
+        b = ((self.top_point.x - self.right_point.x) ** 2 + (self.top_point.y - self.right_point.y) ** 2) ** 0.5
+        c = ((self.right_point.x - self.left_point.x) ** 2 + (self.right_point.y - self.left_point.y) ** 2) ** 0.5
         p = (a + b + c) / 2
         return (p*(p-a)*(p-b)*(p-c)) ** 0.5
+
+    def __eq__(self, other):
+        return self.area == other.area
+
+    def __ge__(self, other):
+        return self.area >= other.area
+
+    def __le__(self, other):
+        return self.area <= other.area
+
+    def __ne__(self, other):
+        return self.area != other.area
+
+    def __lt__(self, other):
+        return self.area < other.area
+
+    def __gt__(self, other):
+        return self.area > other.area
+
+    def __repr__(self):
+        return f'(Point ({self.left_point.x},{self.left_point.y}) ' \
+               f'Point ({self.right_point.x},{self.right_point.y}) ' \
+               f'Point ({self.top_point.x},{self.top_point.y}))'
 
 
 line1 = Line(point2, point1)
 
 tri1 = Triangle(point1, point2, point3)
 
-print(line1.length)
+tri2 = Triangle(point1, point2, point4)
 
-print(tri1.area)
+print(tri1 > tri2)
+print(tri1)
