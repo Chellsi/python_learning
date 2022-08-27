@@ -6,7 +6,6 @@ file_currency = 'file_currency.txt'
 
 
 def update_currency():
-
     try:
         result = requests.request('GET', url)
         result_list = result.json()
@@ -14,10 +13,9 @@ def update_currency():
         print(e)
     else:
         if 300 > result.status_code >= 200:
-            with open(file_currency, 'a') as file:
+            with open(file_currency, 'at') as file:
                 file.write(f'"[{date.today()}]"\n')
-            for currency in result_list:
-                with open(file_currency, 'a') as file:
+                for currency in result_list:
                     file.write(f'[{currency.get("txt")}] to UAH: [{currency.get("rate")}]\n')
 
 
