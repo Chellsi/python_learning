@@ -19,5 +19,6 @@ def update_currency():
                     file.write(f'[{currency.get("txt")}] to UAH: [{currency.get("rate")}]\n')
 
 
-update_currency()
+if __name__ == '__main__':
+    update_currency()
 
