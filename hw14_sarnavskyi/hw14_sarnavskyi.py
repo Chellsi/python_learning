@@ -54,17 +54,17 @@ class Vehicle:
         return trip_data
 
     def lend_fuel(self, other):
-        if self.tank_level == 0 or other.tank_level == other.tank_capacity:
+        if other.tank_level == 0 or self.tank_level == self.tank_capacity:
             print("Dont worry, I will deal with it")
-        elif self.tank_level >= other.tank_capacity - other.tank_level:
-            difference_level = round(other.tank_capacity - other.tank_level, 2)
+        elif other.tank_level >= self.tank_capacity - self.tank_level:
+            difference_level = round(self.tank_capacity - self.tank_level, 2)
             print(f"Thx bro, you saved me. You have dealt me {difference_level} liters of fuel")
-            other.tank_level = other.tank_capacity
-            self.tank_level -= difference_level
+            self.tank_level = self.tank_capacity
+            other.tank_level -= difference_level
         else:
-            print(f"Thx bro, you saved me. You have dealt me {self.tank_level} liters of fuel")
-            other.tank_level += self.tank_level
-            self.tank_level = 0
+            print(f"Thx bro, you saved me. You have dealt me {other.tank_level} liters of fuel")
+            self.tank_level += other.tank_level
+            other.tank_level = 0
 
     def __eq__(self, other):
         return self.year == other.year and self.odometer_value == other.odometer_value
@@ -76,6 +76,11 @@ ambulance_car = Vehicle('Mercedes-Benz', 'Sprinter 319', 2017, 90, 150, 11)
 
 
 if __name__ == '__main__':
+    brothers_car.refueling()
+    leonards_car.lend_fuel(brothers_car)
+    print(brothers_car.tank_level)
+    print(leonards_car.tank_level)
+
     brothers_car.refueling()
     leonards_car.refueling()
     ambulance_car.refueling()
